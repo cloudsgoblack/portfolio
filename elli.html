@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Portfolio</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="tyyli.css">
+</head>
+
+<body>
+
+    <div class="header">
+        <h4>Ellinoora Tammi</h4>
+        <h2>Kokoava oppimistehtävä</h2>
+    </div>
+
+    <nav class="navbar navbar-expand-sm navbar-custom fixed-top">
+        <div class="container-fluid justify-content-center">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="#alku">Alku</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#info">Info</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#koirat">Koirat</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#ihmiset">Ihmiset</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#muut">Muut</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#extra">Extra</a>
+                </li>
+            </ul>
+        </div>
+        </div>
+    </nav>
+
+    <div class="sisalto" id="alku">
+        <div class="row">
+            <h2>Tervetuloa!</h2>
+            <h3>Valokuvausportfolio</h3>
+
+            <p>Moikka!<br>
+                Valitsin oman sivuston aiheeksi epävirallisen valokuvausportfolion, joten tervetuloa selailemaan
+                keskinkertaisia otoksiani! :')<br>
+                Kaikki julkaisemani kuvat löydät täältä: <a
+                    href='http://surunmurhaaja.kuvat.fi'>Surunmurhaaja-kuvapalvelin</a></p>
+
+            <p>Jos tuntuu siltä, että tänne lataamani omaottavat kuvat eivät ole miellyttäviä, voit siirtyä kohtaan
+                <b>"Extra"</b>.
+                Palveluni hakee sinulle satunnaisen koirakuvan kuvapankista. XD
+            </p>
+
+</body>
+
+</html>
+
+</div>
+</div>
+
+<!--Info-->
+
+<div class="sisalto" id="info">
+    <div class="row">
+        <h2>Info</h2>
+        <h3>Vähän lisätietoja kuvaajasta</h3>
+        <p>Olen harrastanut valokuvaamista ihan pikkutytöstä asti - ensin pokkarikameroilla, sitten ensimmäisellä
+            omalla järjestelmäkameralla ja parin päivitysten myötä olen nyt jumahtanut nykyiseen
+            järjestelmäkamerakalustooni.
+            Kuvaan pääasiassa potretteja, ja koirat ovat eniten osaamisalaani - varmasti aivan mielenkiinnostani ja
+            lähipiiristäni
+            johtuen. Olen ties miten monesti haaveillut kevytyrittäjyydestä valokuvauksen parissa, mutta defenssit aina
+            iskevät, ja
+            kaluston yksipuolisuus, joten edelleen toimin pelkästään harrastelijana.
+        </p>
+        <p>Usean vuoden ajan olen kuvannut Canonin 6D mark II -rungolla sekä Sigman 135 millimetrin f/2.8
+            -objektiivilla. Ihan hyvät, mutta
+            hyvin rasittavat pelit toisinaan! Kuvien editoimiseen olen aina käyttänyt Lightroomia, sillä Photoshopin
+            opettelu on aina tyssänyt oman
+            tietokoneen suoritustehon puutteellisuuteen ohjelman kanssa.
+        </p>
+        <p>Tiesitkö muuten, että perusvalokuvaamiseen <i>pilvinen</i> sää on kaikista paras, ainakin omasta mielestäni?
+            Suomessa valo on
+            todella monessa kohtaa vuotta ja vuorokautta ikävän kovaa ja "liian kirkasta", mikä vaikeuttaa valokuvaajan
+            työtä. Harva kuvaaja nauttii
+            kuvaamisesta suorassa auringonpaisteessa, vaikka sen voisi ajatella maallikkona olevan kaikista optimaalisin
+            valon kannalta!
+            Vastavaloharjoitteluakin on mielestäni mukavinta tehdä aina iltaisin, etenkin kesän ja talven laskevan
+            auringon pehmeässä valossa.
+        </p>
+        <p>Asun itse Helsingissä, mutta laiskana harrastajana iso osa kuvaussessioista kohdistuvat nykyisin
+            synnyinkaupunkini Heinolan maisemiin.
+            Millainen sää pikkukaupunki-Heinolassa on tällä hetkellä? Olisiko hyvä aika napata kamera matkaan, ja
+            suunnata kuvausspottien äärelle?
+        </p>
+
+        <div id="heinola"></div>
+
+        <p>Mahdollisesti kannattaa myös tarkastaa - toki mieltymystesi ja kalustosi mukaan - paljonko kello, ettei valo
+            ole jo ehtinyt loppumaan tai ettei ole jo yö! </p>
+
+        <center>Kello on nyt: </center>
+        <div id="kello"></div>
+        <br><br>
+
+        <script>
+            function naytaKello() {
+                const now = new Date();
+                const options = { hour: '2-digit', minute: '2-digit', hour12: false, timeZone: 'Europe/Helsinki' };
+                const kellonaika = now.toLocaleTimeString('fi-FI', options);
+                document.getElementById('kello').innerHTML = kellonaika;
+            }
+
+            fetch('https://api.openweathermap.org/data/2.5/weather?lang=fi&q=heinola&units=metric&APPID=665ecd56dfc08dbb50feb8b8f5034e28')
+                .then(function (response) {
+                    return response.json();
+                })
+
+                .then(function (data) {
+                    saa('heinola', data);
+                })
+
+                .catch(function (error) {
+                    document.getElementById("vastaus").innerHTML = "<p>Tietoa ei pystytä hakemaan</p>";
+                })
+
+            function saa(kaupunki, data) {
+                var teksti = "";
+                var kuvaus = data.weather[0].description;
+                var kuva = 'http://openweathermap.org/img/w/' + data.weather[0].icon + '.png';
+
+                teksti = "<h1>" + data.name + "n sää tällä hetkellä</h1>";
+                teksti += "<i>" + kuvaus.charAt(0).toUpperCase() + kuvaus.slice(1) + ".</i>";
+                teksti += "<br><b>Lämpötila: </b>" + data.main.temp + " &degC";
+                teksti += "<br><b>Tuulen nopeus:</b> " + data.wind.speed;
+                teksti += "<br><img src='" + kuva + "' alt='kuva'>";
+
+                document.getElementById(kaupunki).innerHTML = teksti;
+            }
+
+            naytaKello();
+        </script>
+
+    </div>
+</div>
+
+<!--Koirakuvat-->
+
+<div class="sisalto" id="koirat">
+    <div class="row">
+        <h2>Esimerkkikuvia</h2>
+        <h3>Koiravalokuvaus</h3>
+
+        <!-- Modalit -->
+        <div class="modal fade" id="imageModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <img src="https://surunmurhaaja.kuvat.fi/kuvat/Koirakavereita/Neela/2024/IMG_9572.jpg?img=full"
+                            class="img-fluid" alt="Kleinspitz-rotuinen pieni koira loppukesäisellä kukkaniityllä istumassa etujalat ilmassa.">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="imageModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <img src="https://surunmurhaaja.kuvat.fi/kuvat/Koirakavereita/Viva/2020/IMG_3272.jpg?img=full"
+                            class="img-fluid" alt="Pystykorvainen, lyhytkarvainen ja mustavalkoinen bordercollie makaamassa kiviaidalla. Lähipotretti.">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="imageModal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <img src="https://surunmurhaaja.kuvat.fi/kuvat/Tempo/2024/IMG_3558.jpg?img=full"
+                            class="img-fluid" alt="Pieni vaaleanruskea koira lopputalveisissa maisemissa puisella kävelysillalla. Kuvassa tummat sävyt.">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="imageModal4" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <img src="https://surunmurhaaja.kuvat.fi/kuvat/Koirakavereita/Isla/2021/IMG_3826.jpg?img=full"
+                            class="img-fluid" alt="Dalmatiankoiran pentu katselemassa saippuakuplia. Yksi kupla koskettaa pennun kirsua.">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="imageModal5" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <img src="https://surunmurhaaja.kuvat.fi/kuvat/Koirakavereita/Viva/2020/IMG_4882.jpg?img=full"
+                            class="img-fluid" alt="Lyhytkarvainen, pystykorvainen bordercollie hiekkarannalla. Koira heijastuu peilikuvana sen edessä olevasta vedestä.">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="imageModal6" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <img src="https://surunmurhaaja.kuvat.fi/kuvat/Koirakavereita/Neela/2021/IMG_0491.jpg?img=full"
+                            class="img-fluid" alt="Pieni kleinspitz-rotuinen ruskea koira puulankulla seisomassa.">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="imageModal7" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <img src="https://surunmurhaaja.kuvat.fi/kuvat/Koirakavereita/Milli/IMG_5758.jpg?img=full"
+                            class="img-fluid" alt="Stafforrdshirenbullterrieri juoksemassa kohti kameraa. Kesäinen, vihreä taustamaisema.">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="imageModal8" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <img src="https://surunmurhaaja.kuvat.fi/kuvat/Koirakavereita/Aura/2023/IMG_9572.jpg?img=full"
+                            class="img-fluid" alt="Lyhytkarvainen bordercollie istumassa mättäällä. Tummat sävyt, syksyinen ja hieman satumainen valo.">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="imageModal9" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <img src="https://surunmurhaaja.kuvat.fi/kuvat/Faarao/2022/IMG_4191.jpg?img=full"
+                            class="img-fluid" alt="Belgianpaimenkoiran pennun pään sivuprofiilikuva.">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="imageModal10" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <img src="https://surunmurhaaja.kuvat.fi/kuvat/Koirakavereita/Totti/IMG_3637.jpg?img=full"
+                            class="img-fluid" alt="Dalmatiankoiran pentu hankien keskellä astumassa kohti kameraa.">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="imageModal11" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <img src="https://surunmurhaaja.kuvat.fi/kuvat/Koirakavereita/Neela/2020/IMG_7437.jpg?img=full"
+                            class="img-fluid" alt="Pieni kleinspitz istumassa etutassut ylhäällä kanervien keskellä.">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="imageModal12" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <img src="https://surunmurhaaja.kuvat.fi/kuvat/Koirakavereita/Loki/2021/IMG_5366.jpg?img=full"
+                            class="img-fluid" alt="Dalmatiankoira takki päällä lumisessa metsässä.">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="imageModal13" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <img src="https://surunmurhaaja.kuvat.fi/kuvat/Jurri/2021/Joulukuu/IMG_8932.jpg?img=full"
+                            class="img-fluid" alt="Bordercollie kurkistamassa puun takaa. Luminen maisema ja talvinen, pehmeä valotus.">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="imageModal14" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <img src="https://surunmurhaaja.kuvat.fi/kuvat/Koirakavereita/Frodo/IMG_1729.jpg?img=full"
+                            class="img-fluid" alt="Bordercollie makaamassa talvisessa auringonlaskussa. Vastavalo.">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Thumbnailit-->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <img src="https://surunmurhaaja.kuvat.fi/kuvat/Koirakavereita/Neela/2024/IMG_9572.jpg?img=full"
+                        class="img-fluid img-thumbnail" alt="Kleinspitz-rotuinen pieni koira loppukesäisellä kukkaniityllä istumassa etujalat ilmassa." data-bs-toggle="modal"
+                        data-bs-target="#imageModal1">
+                </div>
+                <div class="col-md-4">
+                    <img src="https://surunmurhaaja.kuvat.fi/kuvat/Koirakavereita/Viva/2020/IMG_3272.jpg?img=full"
+                        class="img-fluid img-thumbnail" alt="Pystykorvainen, lyhytkarvainen ja mustavalkoinen bordercollie makaamassa kiviaidalla. Lähipotretti." data-bs-toggle="modal"
+                        data-bs-target="#imageModal2">
+                </div>
+                <div class="col-md-4">
+                    <img src="https://surunmurhaaja.kuvat.fi/kuvat/Tempo/2024/IMG_3558.jpg?img=full"
+                        class="img-fluid img-thumbnail" alt="Pieni vaaleanruskea koira lopputalveisissa maisemissa puisella kävelysillalla. Kuvassa tummat sävyt." data-bs-toggle="modal"
+                        data-bs-target="#imageModal3">
+                </div>
+                <div class="col-md-6">
+                    <img src="https://surunmurhaaja.kuvat.fi/kuvat/Koirakavereita/Isla/2021/IMG_3826.jpg?img=full"
+                        class="img-fluid img-thumbnail" alt="Dalmatiankoiran pentu katselemassa saippuakuplia. Yksi kupla koskettaa pennun kirsua." data-bs-toggle="modal"
+                        data-bs-target="#imageModal4">
+                </div>
+                <div class="col-md-6">
+                    <img src="https://surunmurhaaja.kuvat.fi/kuvat/Koirakavereita/Viva/2020/IMG_4882.jpg?img=full"
+                        class="img-fluid img-thumbnail" alt="Lyhytkarvainen, pystykorvainen bordercollie hiekkarannalla. Koira heijastuu peilikuvana sen edessä olevasta vedestä." data-bs-toggle="modal"
+                        data-bs-target="#imageModal5">
+                </div>
+                <div class="col-md-3">
+                    <img src="https://surunmurhaaja.kuvat.fi/kuvat/Koirakavereita/Neela/2021/IMG_0491.jpg?img=full"
+                        class="img-fluid img-thumbnail" alt="Pieni kleinspitz-rotuinen ruskea koira puulankulla seisomassa." data-bs-toggle="modal"
+                        data-bs-target="#imageModal6">
+                </div>
+                <div class="col-md-3">
+                    <img src="https://surunmurhaaja.kuvat.fi/kuvat/Koirakavereita/Milli/IMG_5758.jpg?img=full"
+                        class="img-fluid img-thumbnail" alt="Stafforrdshirenbullterrieri juoksemassa kohti kameraa. Kesäinen, vihreä taustamaisema." data-bs-toggle="modal"
+                        data-bs-target="#imageModal7">
+                </div>
+                <div class="col-md-3">
+                    <img src="https://surunmurhaaja.kuvat.fi/kuvat/Koirakavereita/Aura/2023/IMG_9572.jpg?img=full"
+                        class="img-fluid img-thumbnail" alt="Lyhytkarvainen bordercollie istumassa mättäällä. Tummat sävyt, syksyinen ja hieman satumainen valo." data-bs-toggle="modal"
+                        data-bs-target="#imageModal8">
+                </div>
+                <div class="col-md-3">
+                    <img src="https://surunmurhaaja.kuvat.fi/kuvat/Faarao/2022/IMG_4191.jpg?img=full"
+                        class="img-fluid img-thumbnail" alt="Belgianpaimenkoiran pennun pään sivuprofiilikuva." data-bs-toggle="modal"
+                        data-bs-target="#imageModal9">
+                </div>
+                <div class="col-md-6">
+                    <img src="https://surunmurhaaja.kuvat.fi/kuvat/Koirakavereita/Totti/IMG_3637.jpg?img=full"
+                        class="img-fluid img-thumbnail" alt="Dalmatiankoiran pentu hankien keskellä astumassa kohti kameraa." data-bs-toggle="modal"
+                        data-bs-target="#imageModal10">
+                </div>
+                <div class="col-md-6">
+                    <img src="https://surunmurhaaja.kuvat.fi/kuvat/Koirakavereita/Neela/2020/IMG_7437.jpg?img=full"
+                        class="img-fluid img-thumbnail" alt="Pieni kleinspitz istumassa etutassut ylhäällä kanervien keskellä." data-bs-toggle="modal"
+                        data-bs-target="#imageModal11">
+                </div>
+                <div class="col-md-4">
+                    <img src="https://surunmurhaaja.kuvat.fi/kuvat/Koirakavereita/Loki/2021/IMG_5366.jpg?img=full"
+                        class="img-fluid img-thumbnail" alt="Dalmatiankoira takki päällä lumisessa metsässä." data-bs-toggle="modal"
+                        data-bs-target="#imageModal12">
+                </div>
+                <div class="col-md-4">
+                    <img src="https://surunmurhaaja.kuvat.fi/kuvat/Jurri/2021/Joulukuu/IMG_8932.jpg?img=full"
+                        class="img-fluid img-thumbnail" alt="Bordercollie kurkistamassa puun takaa. Luminen maisema ja talvinen, pehmeä valotus." data-bs-toggle="modal"
+                        data-bs-target="#imageModal13">
+                </div>
+                <div class="col-md-4">
+                    <img src="https://surunmurhaaja.kuvat.fi/kuvat/Koirakavereita/Frodo/IMG_1729.jpg?img=full"
+                        class="img-fluid img-thumbnail" alt="Bordercollie makaamassa talvisessa auringonlaskussa. Vastavalo." data-bs-toggle="modal"
+                        data-bs-target="#imageModal14">
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!--Ihmismallit-->
+
+<div class="sisalto" id="ihmiset">
+    <div class="row">
+        <h2>Esimerkkikuvia</h2>
+        <h3>Ihmisvalokuvaus</h3>
+
+        <!-- Modalit -->
+        <div class="modal fade" id="imageModal15" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <img src="https://surunmurhaaja.kuvat.fi/kuvat/Ihmismallit/Tiia/IMG_9105.jpg?img=full"
+                            class="img-fluid" alt="Nainen kleinspitz-rotuinen koira sylissään kukkaniityllä. Pystypotretti läheltä.">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="imageModal16" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <img src="https://surunmurhaaja.kuvat.fi/kuvat/Ihmismallit/Tiia/IMG_9291.jpg?img=full"
+                            class="img-fluid" alt="Nainen kleinspitz-rotuinen koira sylissään kesän ilta-auringossa. Pystykuva.">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="imageModal17" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <img src="https://surunmurhaaja.kuvat.fi/kuvat/Ihmismallit/Tiia/IMG_9441.jpg?img=full"
+                            class="img-fluid" alt="Nainen kleinspitz-rotuinen koira sylissään maitohorsmaniittyä vasten. Violetit kukat taustalla, potretti kauempaa.">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="imageModal18" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <img src="https://surunmurhaaja.kuvat.fi/kuvat/Koirakavereita/Ruu/IMG_8164.jpg?img=full"
+                            class="img-fluid" alt="Nainen kyykyssä mudi-rotuisen harmaan koiransa vieressä. Taustalla pastellinsävyinen, lila-sininen auringonlasku talvella.">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="imageModal19" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <img src="https://surunmurhaaja.kuvat.fi/kuvat/Ihmismallit/Rosa/2019/IMG_1287.jpg?img=full"
+                            class="img-fluid" alt="Punahiuksinen nainen kasvitieteellisessä puutarhassa.">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="imageModal20" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <img src="https://surunmurhaaja.kuvat.fi/kuvat/Ihmismallit/Anni/IMG_6710.jpg?img=full"
+                        class="img-fluid" alt="Vaaleahiuksinen nainen kukkaniityllä.">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="imageModal21" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <img src="https://surunmurhaaja.kuvat.fi/kuvat/Ihmismallit/Mitja/IMG_5792.jpg?img=full"
+                        class="img-fluid" alt="Vaaleahiuksinen mies. Lähimuotokuva.">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Thumbnailit-->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <img src="https://surunmurhaaja.kuvat.fi/kuvat/Ihmismallit/Tiia/IMG_9105.jpg?img=full"
+                    class="img-fluid img-thumbnail" alt="Nainen kleinspitz-rotuinen koira sylissään kukkaniityllä. Pystypotretti läheltä." data-bs-toggle="modal" data-bs-target="#imageModal15">
+            </div>
+            <div class="col-md-6">
+                <img src="https://surunmurhaaja.kuvat.fi/kuvat/Ihmismallit/Tiia/IMG_9291.jpg?img=full"
+                    class="img-fluid img-thumbnail" alt="Nainen kleinspitz-rotuinen koira sylissään kesän ilta-auringossa. Pystykuva." data-bs-toggle="modal" data-bs-target="#imageModal16">
+            </div>
+            <div class="col-md-4">
+                <img src="https://surunmurhaaja.kuvat.fi/kuvat/Ihmismallit/Tiia/IMG_9441.jpg?img=full"
+                    class="img-fluid img-thumbnail" alt="Nainen kleinspitz-rotuinen koira sylissään maitohorsmaniittyä vasten. Violetit kukat taustalla, potretti kauempaa." data-bs-toggle="modal" data-bs-target="#imageModal17">
+            </div>
+            <div class="col-md-4">
+                <img src="https://surunmurhaaja.kuvat.fi/kuvat/Koirakavereita/Ruu/IMG_8164.jpg?img=full"
+                    class="img-fluid img-thumbnail" alt="Nainen kyykyssä mudi-rotuisen harmaan koiransa vieressä. Taustalla pastellinsävyinen, lila-sininen auringonlasku talvella." data-bs-toggle="modal" data-bs-target="#imageModal18">
+            </div>
+            <div class="col-md-4">
+                <img src="https://surunmurhaaja.kuvat.fi/kuvat/Ihmismallit/Rosa/2019/IMG_1287.jpg?img=full"
+                    class="img-fluid img-thumbnail" alt="Punahiuksinen nainen kasvitieteellisessä puutarhassa." data-bs-toggle="modal" data-bs-target="#imageModal19">
+            </div>
+            <div class="col-md-6">
+                <img src="https://surunmurhaaja.kuvat.fi/kuvat/Ihmismallit/Anni/IMG_6710.jpg?img=full"
+                    class="img-fluid img-thumbnail" alt="Vaaleahiuksinen nainen kukkaniityllä." data-bs-toggle="modal" data-bs-target="#imageModal20">
+            </div>
+            <div class="col-md-6">
+                <img src="https://surunmurhaaja.kuvat.fi/kuvat/Ihmismallit/Mitja/IMG_5792.jpg?img=full"
+                    class="img-fluid img-thumbnail" alt="Vaaleahiuksinen mies. Lähimuotokuva." data-bs-toggle="modal" data-bs-target="#imageModal21">
+            </div>
+        </div>
+    </div>
+
+</div>
+</div>
+
+<!--Muut potretit-->
+
+<div class="sisalto" id="muut">
+    <div class="row">
+        <h2>Esimerkkikuvia</h2>
+        <h3>Muita eläinpotretteja</h3>
+
+        <!-- Modalit -->
+        <div class="modal fade" id="imageModal22" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <img src="https://surunmurhaaja.kuvat.fi/kuvat/Ruben/IMG_8809.jpg?img=full" class="img-fluid"
+                            alt="Valkoinen, luppakorvainen kani loikkaamassa kohti kameraa.">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="imageModal23" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <img src="https://surunmurhaaja.kuvat.fi/kuvat/Ruben/IMG_8942.jpg?img=full" class="img-fluid"
+                            alt="Valkoinen luppakorvakani vehreiden vuohenputkien keskellä puutarhassa. Kanin toinen korva hieman pystyssä ja kasvot kameraan päin.">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="imageModal24" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <img src="https://surunmurhaaja.kuvat.fi/kuvat/Ruben/IMG_8919.jpg?img=full" class="img-fluid"
+                            alt="Valkoinen kani nuuhkimassa korkeita kukkaistutuksia puutarhassa.">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="imageModal25" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <img src="https://surunmurhaaja.kuvat.fi/kuvat/Kissanpennut/Vanilla/IMG_1881.jpg?img=full"
+                            class="img-fluid" alt="Sinisilmäinen, harmaanruskea kissanpentu lähikuvassa. Kissa raapii raapimapuuta.">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="imageModal26" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <img src="https://surunmurhaaja.kuvat.fi/kuvat/Muut%20el%C3%A4imet/Kalle%20ja%20Vallu/IMG_7061.jpg?img=full"
+                            class="img-fluid" alt="Sivukuva valkoturpaisen, punaruskean hevosen päästä.">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="imageModal27" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <img src="https://surunmurhaaja.kuvat.fi/kuvat/Muut%20el%C3%A4imet/Taika/IMG_9875.jpg?img=full"
+                        class="img-fluid" alt="Suomenhevonen ravaamassa omistajansa taluttamana hiekkakentällä.">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="imageModal28" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <img src="https://surunmurhaaja.kuvat.fi/kuvat/Muut%20el%C3%A4imet/Ammut/IMG_6051.jpg?img=full"
+                        class="img-fluid" alt="Lähikuva mustan lehmän silmästä.">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="imageModal29" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <img src="https://surunmurhaaja.kuvat.fi/kuvat/Muut%20el%C3%A4imet/Ammut/IMG_6117.jpg?img=full"
+                        class="img-fluid" alt="Ruskeavalkoinen lehmä laitumella, katse oikealle. Kuvan etualalla violetteja lupiineja.">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Thumbnailit-->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <img src="https://surunmurhaaja.kuvat.fi/kuvat/Ruben/IMG_8809.jpg?img=full"
+                    class="img-fluid img-thumbnail" alt="Valkoinen, luppakorvainen kani loikkaamassa kohti kameraa." data-bs-toggle="modal" data-bs-target="#imageModal22">
+            </div>
+            <div class="col-md-6">
+                <img src="https://surunmurhaaja.kuvat.fi/kuvat/Ruben/IMG_8942.jpg?img=full"
+                    class="img-fluid img-thumbnail" alt="Valkoinen luppakorvakani vehreiden vuohenputkien keskellä puutarhassa. Kanin toinen korva hieman pystyssä ja kasvot kameraan päin." data-bs-toggle="modal" data-bs-target="#imageModal23">
+            </div>
+            <div class="col-md-6">
+                <img src="https://surunmurhaaja.kuvat.fi/kuvat/Ruben/IMG_8919.jpg?img=full"
+                    class="img-fluid img-thumbnail" alt="Valkoinen kani nuuhkimassa korkeita kukkaistutuksia puutarhassa." data-bs-toggle="modal" data-bs-target="#imageModal24">
+            </div>
+            <div class="col-md-4">
+                <img src="https://surunmurhaaja.kuvat.fi/kuvat/Kissanpennut/Vanilla/IMG_1881.jpg?img=full"
+                    class="img-fluid img-thumbnail" alt="Sinisilmäinen, harmaanruskea kissanpentu lähikuvassa. Kissa raapii raapimapuuta." data-bs-toggle="modal" data-bs-target="#imageModal25">
+            </div>
+            <div class="col-md-4">
+                <img src="https://surunmurhaaja.kuvat.fi/kuvat/Muut%20el%C3%A4imet/Kalle%20ja%20Vallu/IMG_7061.jpg?img=full"
+                    class="img-fluid img-thumbnail" alt="Sivukuva valkoturpaisen, punaruskean hevosen päästä." data-bs-toggle="modal" data-bs-target="#imageModal26">
+            </div>
+            <div class="col-md-4">
+                <img src="https://surunmurhaaja.kuvat.fi/kuvat/Muut%20el%C3%A4imet/Taika/IMG_9875.jpg?img=full"
+                    class="img-fluid img-thumbnail" alt="Suomenhevonen ravaamassa omistajansa taluttamana hiekkakentällä." data-bs-toggle="modal" data-bs-target="#imageModal27">
+            </div>
+            <div class="col-md-6">
+                <img src="https://surunmurhaaja.kuvat.fi/kuvat/Muut%20el%C3%A4imet/Ammut/IMG_6051.jpg?img=full"
+                    class="img-fluid img-thumbnail" alt="Lähikuva mustan lehmän silmästä." data-bs-toggle="modal" data-bs-target="#imageModal28">
+            </div>
+            <div class="col-md-6">
+                <img src="https://surunmurhaaja.kuvat.fi/kuvat/Muut%20el%C3%A4imet/Ammut/IMG_6117.jpg?img=full"
+                    class="img-fluid img-thumbnail" alt="Ruskeavalkoinen lehmä laitumella, katse oikealle. Kuvan etualalla violetteja lupiineja." data-bs-toggle="modal" data-bs-target="#imageModal29">
+            </div>
+        </div>
+    </div>
+
+</div>
+</div>
+
+<div class="sisalto" id="extra">
+    <div class="container">
+        <h3>Generoi itsellesi kivempi koirakuva</h3>
+
+        <p>Koska halusin yrittää tehdä sivustolle toisenkinlaisen JSON-työkalun, päädyin selvittelemään Googlen ja tekoälyn avulla,
+        että mikä olisi sopiva datanhakusivusto tällaiseen "portfolioon". Löysin sivuston, jolla on pankissa datanhakuun käytettäviä 
+        koirakuvia, ja lähdin selvittämään, miten sieltä onnistuisi saada kuvia omalle sivulle randomisti generoitavaksi. Aika paljon 
+        jouduin vääntämään tekoälyn kanssa, ja koodi osittain ylittää oman ymmärrykseni tason vielä tässä vaiheessa, mutta sain lopulta 
+        sen toimimaan halutusti! xD Joten saa klikkailla! </p>
+
+        <p>En vastaa näiden kuvien tekijänoikeuksista tai laadusta. :)</p>
+
+        <button id="button" class="btn btn-primary mb-3">Generoi kuva</button>
+        <div id="generointi"></div>
+    </div>
+
+    <script>
+        const url = `https://api.thedogapi.com/v1/images/search?limit=1`;
+        const api_key = "live_w4M2QxThQmGgUHit3mfYkW7yCkZYUpof8dUcyRmf6LyjRRtikrolTd4g1cTvaYht";
+        document.getElementById("button").addEventListener("click", function () {
+
+            fetch(url, { headers: { 'x-api-key': api_key } })
+                .then(function (response) {
+                    return response.json();
+                })
+
+                .then(function (data) {
+                    hae(data);
+                })
+
+                .catch(function (error) {
+                    document.getElementById("generointi").innerHTML = "<p>Tietoa ei pystytä hakemaan</p>";
+                })
+
+        });
+
+        function hae(data) {
+            const generointiDiv = document.getElementById('generointi');
+            generointiDiv.innerHTML = "";
+
+            const kuvaData = data[0];
+            const kuva = document.createElement('img');
+            kuva.src = kuvaData.url;
+            kuva.classList.add('img-fluid', 'grid-cell');
+            kuva.style.width = "700px";
+
+            const gridCell = document.createElement('div');
+            gridCell.classList.add('col');
+            gridCell.appendChild(kuva);
+
+            document.getElementById('generointi').appendChild(gridCell);
+        }
+
+    </script>
+</div>
+
+
+<div class="footer">
+    <p>Kuvat ja sisältö © Ellinoora Tammi 2024</p>
+</div>
+</body>
+
+</html>
